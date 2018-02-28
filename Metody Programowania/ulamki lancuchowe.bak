@@ -1,0 +1,13 @@
+#lang racket
+
+
+
+(define (cont-frac num den k)
+  (define (iter-cont-frac count product)
+    (if (= count 0)
+        product
+        (iter-cont-frac (- count 1)  (/ (num k) (+ (den k) product )))
+        )
+    )
+  (iter-cont-frac k 1.0))
+

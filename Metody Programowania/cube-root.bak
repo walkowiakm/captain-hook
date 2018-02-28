@@ -1,0 +1,33 @@
+#lang racket
+(define (square x)
+  (* x x)
+  )
+
+(define (cube x)
+  (* x x x)
+  )
+
+(define (abs x)
+  (if (< x 0)
+      (- x)
+      x
+      )
+  )
+
+(define (cube-root x)
+  (define (is-good? approx)
+    (< (abs (- x approx)) 0.0000001)
+    )
+  
+  (define (improve approx)
+    (/ (+ (/ x (square approx)) approx approx) 3.0)
+    )
+           
+  (define (iter approx)
+    (if (is-good? (cube approx))
+        approx
+        (iter (improve approx))
+        )
+    ) 
+  (iter 1.0)
+ )
